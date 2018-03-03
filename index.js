@@ -17,6 +17,14 @@ mongoose.connect(uristring, (error) => {
   }
 })
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", req.header("Origin"));
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    next();
+});
+
 const apiBase = '/api/v1/';
 
 app.use(bodyParser.json());
